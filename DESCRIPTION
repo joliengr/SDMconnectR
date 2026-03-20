@@ -1,0 +1,11 @@
+Package: SDMconnectR
+Title: Simple Tools for Species Distribution Modeling and Connectivity
+Version: 0.0.0.9000
+Authors@R: 
+    person("Jolien", "Grafe", , "jolien.grafe@stud-mail.wuerzburg-uni.de", role = c("aut", "cre"))
+Description: A minimal toolkit for fitting species distribution models and analyzing landscape connectivity.
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
