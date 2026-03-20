@@ -6,9 +6,10 @@
 #' @param x_col Name of the longitude column
 #' @param y_col Name of the latitude column
 #' @param n Number of pseudo-absence points to generate
-#' @param min_dist Minimum distance zu presence points
+#' @param min_dist Minimum distance to presence points (optional)
 #' @return A data frame with presence (1) and pseudo-absence (0)
-#' 
+#' @examples
+
 
 generate_pseudo_absence <- function(data, x_col, y_col, n, min_dist = NULL) {
 

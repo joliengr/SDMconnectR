@@ -3,7 +3,18 @@ Title: Simple Tools for Species Distribution Modeling and Connectivity
 Version: 0.0.0.9000
 Authors@R: 
     person("Jolien", "Grafe", , "jolien.grafe@stud-mail.wuerzburg-uni.de", role = c("aut", "cre"))
-Description: A minimal toolkit for fitting species distribution models and analyzing landscape connectivity.
+Description: A minimal and modular toolkit for fitting species distribution models (SDMs) 
+    and analyzing landscape connectivity. The package provides functions for 
+    generating pseudo-absence points, fitting GLM-based SDMs, projecting models 
+    onto environmental raster layers, converting suitability to resistance, 
+    computing least-cost paths between points, and evaluating model performance 
+    with AUC and confusion matrices.
+Imports: 
+    terra (>= 1.7),
+    sf (>= 1.0),
+    leastcostpath (>= 0.4),
+    pROC (>= 1.18),
+    stats
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
 Encoding: UTF-8

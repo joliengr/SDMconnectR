@@ -1,10 +1,15 @@
-#' Fit a simple species distribution model using GLM
+#' Fit a species distribution model using GLM
+#'
+#' This function fits a binomial GLM-based species distribution model (SDM)
+#' using either a formula or a response + predictor columns.
 #'
 #' @param data A data frame containing presence/absence and predictors
-#' @param formula A model formula
-#'
-#' @return A fitted glm object
-#' @export
+#' @param formula Optional model formula (overrides response and predictors if provided)
+#' @param response Name of the response column (used if formula is NULL)
+#' @param predictors Vector of predictor column names (used if formula is NULL)
+#' @return A fitted glm object (family = binomial)
+#' @examples
+
 
 fit_sdm_glm <- function(data, formula) {
   if (!is.data.frame(data)) {

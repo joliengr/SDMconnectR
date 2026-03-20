@@ -1,0 +1,165 @@
+#' Calculate least-cost path between two points
+#'
+#' This function computes the least-cost path between two locations based on a
+#' resistance raster using the leastcostpath package.
+#'
+#' @param raster A SpatRaster representing resistance values
+#' @param from A numeric vector with coordinates of the start point (x, y)
+#' @param to A numeric vector with coordinates of the end point (x, y)
+#' @return An sf object representing the least-cost path
+#' @examples
+#' library(terra)
+#' library(sf)
+#' library(leastcostpath)
+#' r <- rast(nrows = 20, ncols = 20)
+#' values(r) <- runif(ncell(r)) + 0.1
+#' from <- c(xmin(r), ymin(r))
+#' to   <- c(xmax(r), ymax(r))
+#' lcp <- calculate_lcp(r, from, to)
+#' plot(r, col = terrain.colors(50), main = "Least Cost Path")
+#' points(sf::st_coordinates(sf::st_geometry(lcp)), col = "red", pch = 16)
+#' plot(sf::st_geometry(lcp), add = TRUE, col = "blue", lwd = 3)
+#' @export
+
+
+calculate_lcp <- function(raster, from, to) {
+  
+  # Checks
+  if (!inherits(raster, "SpatRaster")) {
+    stop("raster must be a SpatRaster object (terra package)")
+  }
+  
+  if (!is.numeric(from) || length(from) != 2) {
+    stop("from must be a numeric vector of length 2 (x, y)")
+  }
+  
+  if (!is.numeric(to) || length(to) != 2) {
+    stop("to must be a numeric vector of length 2 (x, y)")
+  }
+  
+  # Convert points to sf
+  pts <- data.frame(
+    x = c(from[1], to[1]),
+    y = c(from[2], to[2])
+  )
+  
+  pts_sf <- sf::st_as_sf(pts, coords = c("x", "y"), crs = terra::crs(raster))
+  
+  # Convert resistance -> conductance
+  conductance <- 1 / raster
+  
+  # Create conductance surface
+  cs <- leastcostpath::create_cs(conductance)
+  
+  # Calculate least-cost path
+  lcp <- leastcostpath::create_lcp(
+    x = cs,
+    origin = pts_sf[1, ],
+    destination = pts_sf[2, ]
+  )
+  
+  return(lcp)
+}
+
+
+####################
+##BEISPIEL
+#######################
+
+library(terra)
+library(sf)
+library(leastcostpath)
+
+# Raster (Resistance)
+r <- rast(nrows = 20, ncols = 20)
+values(r) <- runif(ncell(r)) + 0.1
+
+# Start- und Zielpunkt
+from <- c(xmin(r), ymin(r))
+to   <- c(xmax(r), ymax(r))
+
+# Funktion testen
+lcp <- calculate_lcp(r, from, to)
+
+# Ergebnis ansehen
+lcp
+
+plot(r, mar = c(3, 3, 2, 5))
+plot(sf::st_geometry(lcp), add = TRUE, col = "blue", lwd = 2)
+
+dev.new(width = 7, height = 7)
+
+plot(r, col = terrain.colors(50), main = "Least Cost Path")
+points(sf::st_coordinates(sf::st_geometry(lcp)), col = "red", pch = 16)
+plot(sf::st_geometry(lcp), add = TRUE, col = "blue", lwd = 3)
+
+calculate_lcp <- function(raster, from, to) {
+  
+  # Checks
+  if (!inherits(raster, "SpatRaster")) {
+    stop("raster must be a SpatRaster object (terra package)")
+  }
+  
+  if (!is.numeric(from) || length(from) != 2) {
+    stop("from must be a numeric vector of length 2 (x, y)")
+  }
+  
+  if (!is.numeric(to) || length(to) != 2) {
+    stop("to must be a numeric vector of length 2 (x, y)")
+  }
+  
+  # Convert points to sf
+  pts <- data.frame(
+    x = c(from[1], to[1]),
+    y = c(from[2], to[2])
+  )
+  
+  pts_sf <- sf::st_as_sf(pts, coords = c("x", "y"), crs = terra::crs(raster))
+  
+  # Convert resistance -> conductance
+  conductance <- 1 / raster
+  
+  # Create conductance surface
+  cs <- leastcostpath::create_cs(conductance)
+  
+  # Calculate least-cost path
+  lcp <- leastcostpath::create_lcp(
+    x = cs,
+    origin = pts_sf[1, ],
+    destination = pts_sf[2, ]
+  )
+  
+  return(lcp)
+}
+
+
+####################
+##BEISPIEL
+#######################
+
+library(terra)
+library(sf)
+library(leastcostpath)
+
+# Raster (Resistance)
+r <- rast(nrows = 20, ncols = 20)
+values(r) <- runif(ncell(r)) + 0.1
+
+# Start- und Zielpunkt
+from <- c(xmin(r), ymin(r))
+to   <- c(xmax(r), ymax(r))
+
+# Funktion testen
+lcp <- calculate_lcp(r, from, to)
+
+# Ergebnis ansehen
+lcp
+
+plot(r, mar = c(3, 3, 2, 5))
+plot(sf::st_geometry(lcp), add = TRUE, col = "blue", lwd = 2)
+
+dev.new(width = 7, height = 7)
+
+plot(r, col = terrain.colors(50), main = "Least Cost Path")
+points(sf::st_coordinates(sf::st_geometry(lcp)), col = "red", pch = 16)
+plot(sf::st_geometry(lcp), add = TRUE, col = "blue", lwd = 3)
