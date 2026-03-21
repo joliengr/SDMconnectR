@@ -49,36 +49,36 @@ predict_sdm <- function(model, raster, type = "response") {
 ################################
 ###BEISPIEL
 
-library(terra)
+# library(terra)
 
-# Beispiel-Raster
-r1 <- rast(nrows=20, ncols=20)
-values(r1) <- runif(ncell(r1))
+# # Beispiel-Raster
+# r1 <- rast(nrows=20, ncols=20)
+# values(r1) <- runif(ncell(r1))
 
-r2 <- rast(nrows=20, ncols=20)
-values(r2) <- runif(ncell(r2))
+# r2 <- rast(nrows=20, ncols=20)
+# values(r2) <- runif(ncell(r2))
 
-env <- c(r1, r2)
-names(env) <- c("temp", "precip")
+# env <- c(r1, r2)
+# names(env) <- c("temp", "precip")
 
-# Beispiel-Punkte + Presence
-points <- data.frame(
-  x = runif(50, xmin(env), xmax(env)),
-  y = runif(50, ymin(env), ymax(env)),
-  presence = rbinom(50, 1, 0.5)
-)
+# # Beispiel-Punkte + Presence
+# points <- data.frame(
+#   x = runif(50, xmin(env), xmax(env)),
+#   y = runif(50, ymin(env), ymax(env)),
+#   presence = rbinom(50, 1, 0.5)
+# )
 
-# Extract
-data_model <- extract_env(points, env, "x", "y")
+# # Extract
+# data_model <- extract_env(points, env, "x", "y")
 
-# Fit Modell
-model <- fit_sdm_glm(
-  data = data_model,
-  response = "presence",
-  predictors = c("temp", "precip")
-)
+# # Fit Modell
+# model <- fit_sdm_glm(
+#   data = data_model,
+#   response = "presence",
+#   predictors = c("temp", "precip")
+# )
 
-# Prediction
-pred_raster <- predict_sdm(model, env)
+# # Prediction
+# pred_raster <- predict_sdm(model, env)
 
-plot(pred_raster)
+# plot(pred_raster)

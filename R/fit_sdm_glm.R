@@ -49,28 +49,28 @@ fit_sdm_glm <- function(data, formula = NULL, response = NULL, predictors = NULL
 ###############################
 
 
-set.seed(42)
+# set.seed(42)
 
-# Simulierte Daten
-n <- 100
-data <- data.frame(
-  presence = rbinom(n, 1, 0.5),   # 0/1 Zielvariable (Pseudo-Absence + Presence)
-  temp = rnorm(n, mean = 20, sd = 5),
-  precip = rnorm(n, mean = 1000, sd = 200),
-  elevation = rnorm(n, mean = 500, sd = 100)
-)
+# # Simulierte Daten
+# n <- 100
+# data <- data.frame(
+#   presence = rbinom(n, 1, 0.5),   # 0/1 Zielvariable (Pseudo-Absence + Presence)
+#   temp = rnorm(n, mean = 20, sd = 5),
+#   precip = rnorm(n, mean = 1000, sd = 200),
+#   elevation = rnorm(n, mean = 500, sd = 100)
+# )
 
-model1 <- fit_sdm_glm(
-  data = data,
-  response = "presence",
-  predictors = c("temp", "precip", "elevation")
-)
+# model1 <- fit_sdm_glm(
+#   data = data,
+#   response = "presence",
+#   predictors = c("temp", "precip", "elevation")
+# )
 
-summary(model1)
+# summary(model1)
 
-model2 <- fit_sdm_glm(
-  data = data,
-  formula = presence ~ temp + precip + elevation
-)
+# model2 <- fit_sdm_glm(
+#   data = data,
+#   formula = presence ~ temp + precip + elevation
+# )
 
-summary(model2)
+# summary(model2)

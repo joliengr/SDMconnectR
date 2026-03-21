@@ -66,19 +66,19 @@ generate_pseudo_absence <- function(data, x_col, y_col, n, min_dist = NULL) {
 ### BEISPIEL SPÄTER LÖSCHEN
 ###############################
 
-# Beispiel Presence-Daten
-data <- data.frame(
-  lon = c(10, 11, 12),
-  lat = c(50, 51, 52)
-)
+# # Beispiel Presence-Daten
+# data <- data.frame(
+#   lon = c(10, 11, 12),
+#   lat = c(50, 51, 52)
+# )
 
-# Funktion testen (mit Mindestabstand)
-result <- generate_pseudo_absence(
-  data,
-  x_col = "lon",
-  y_col = "lat",
-  n = 5,
-  min_dist = 0.5
-)
+# # Funktion testen (mit Mindestabstand)
+# result <- generate_pseudo_absence(
+#   data,
+#   x_col = "lon",
+#   y_col = "lat",
+#   n = 5,
+#   min_dist = 0.5
+# )
 
-print(result)
+# print(result)

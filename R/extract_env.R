@@ -55,21 +55,21 @@ extract_env <- function(points, raster, x_col, y_col) {
 #BEISPIEL
 ######################
 
-library(terra)
+# library(terra)
 
-# Beispiel-Raster
-r1 <- rast(nrows=10, ncols=10)
-values(r1) <- runif(ncell(r1))
+# # Beispiel-Raster
+# r1 <- rast(nrows=10, ncols=10)
+# values(r1) <- runif(ncell(r1))
 
-r2 <- rast(nrows=10, ncols=10)
-values(r2) <- runif(ncell(r2))
+# r2 <- rast(nrows=10, ncols=10)
+# values(r2) <- runif(ncell(r2))
 
-env <- c(r1, r2)
+# env <- c(r1, r2)
 
-# Beispiel-Punkte
-points <- data.frame(
-  x = runif(5, xmin(env), xmax(env)),
-  y = runif(5, ymin(env), ymax(env))
-)
+# # Beispiel-Punkte
+# points <- data.frame(
+#   x = runif(5, xmin(env), xmax(env)),
+#   y = runif(5, ymin(env), ymax(env))
+# )
 
-extract_env(points, env, "x", "y")
+# extract_env(points, env, "x", "y")

@@ -49,23 +49,23 @@ evaluate_sdm <- function(model, data, response, threshold = 0.5) {
 }
 
 
-##############################
-##BEISPIEL
-#########################
+# ##############################
+# ##BEISPIEL
+# #########################
 
-library(pROC)
+# library(pROC)
 
-# Beispiel-Daten
-set.seed(123)
-data <- data.frame(
-  x1 = runif(50),
-  x2 = runif(50),
-  presence = sample(0:1, 50, replace = TRUE)
-)
+# # Beispiel-Daten
+# set.seed(123)
+# data <- data.frame(
+#   x1 = runif(50),
+#   x2 = runif(50),
+#   presence = sample(0:1, 50, replace = TRUE)
+# )
 
-# Fit SDM
-model <- fit_sdm_glm(data, response = "presence", predictors = c("x1", "x2"))
+# # Fit SDM
+# model <- fit_sdm_glm(data, response = "presence", predictors = c("x1", "x2"))
 
-# Evaluate
-eval <- evaluate_sdm(model, data, response = "presence", threshold = 0.5)
-eval
+# # Evaluate
+# eval <- evaluate_sdm(model, data, response = "presence", threshold = 0.5)
+# eval

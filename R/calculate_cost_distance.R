@@ -60,24 +60,24 @@ calculate_cost_distance <- function(raster, points, x_col, y_col) {
 #############
 ##BEISPIEL
 ##############
-library(terra)
-library(sf)
-library(leastcostpath)
+# library(terra)
+# library(sf)
+# library(leastcostpath)
 
-# Raster (Resistance)
-r <- rast(nrows = 20, ncols = 20)
-values(r) <- runif(ncell(r)) + 0.1
+# # Raster (Resistance)
+# r <- rast(nrows = 20, ncols = 20)
+# values(r) <- runif(ncell(r)) + 0.1
 
-# Punkte
-points <- data.frame(
-  x = runif(4, xmin(r), xmax(r)),
-  y = runif(4, ymin(r), ymax(r))
-)
+# # Punkte
+# points <- data.frame(
+#   x = runif(4, xmin(r), xmax(r)),
+#   y = runif(4, ymin(r), ymax(r))
+# )
 
-# Test
-lcps <- calculate_cost_distance(r, points, "x", "y")
+# # Test
+# lcps <- calculate_cost_distance(r, points, "x", "y")
 
-lcps
+# lcps
 
-plot(r)
-plot(sf::st_geometry(lcps), add = TRUE, col = "red", lwd = 2)
+# plot(r)
+# plot(sf::st_geometry(lcps), add = TRUE, col = "red", lwd = 2)
