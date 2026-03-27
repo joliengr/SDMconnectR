@@ -1,14 +1,37 @@
 #' Generate pseudo-absence points
 #'
-#' This function creates pseudo-absence points based on presence data.
+#' Creates pseudo-absence points based on observed presence data for species distribution modeling.
 #'
-#' @param data A data frame containing presence points with coordinates
-#' @param x_col Name of the longitude column
-#' @param y_col Name of the latitude column
-#' @param n Number of pseudo-absence points to generate
-#' @param min_dist Minimum distance to presence points (optional)
-#' @return A data frame with presence (1) and pseudo-absence (0)
+#' @param data A data frame containing presence points with coordinates.
+#' @param x_col Character. Name of the longitude column.
+#' @param y_col Character. Name of the latitude column.
+#' @param n Integer. Number of pseudo-absence points to generate.
+#' @param min_dist Numeric. Minimum distance to presence points to avoid overlap (optional).
+#' @return A data frame combining original presence points (presence = 1) and pseudo-absence points (presence = 0).
+#' @details
+#' The function generates `n` pseudo-absence points randomly within the bounding box
+#' defined by the presence points. If `min_dist` is provided, pseudo-absence points
+#' closer than this distance to any presence point are discarded.
 #' @examples
+#' \dontrun{
+#' # Example presence data
+#' data <- data.frame(
+#'   lon = c(10, 11, 12),
+#'   lat = c(50, 51, 52)
+#' )
+#' 
+#' # Generate 5 pseudo-absence points
+#' result <- generate_pseudo_absence(
+#'   data,
+#'   x_col = "lon",
+#'   y_col = "lat",
+#'   n = 5,
+#'   min_dist = 0.5
+#' )
+#' 
+#' head(result)
+#' }
+#' @export
 
 
 generate_pseudo_absence <- function(data, x_col, y_col, n, min_dist = NULL) {
@@ -54,31 +77,10 @@ generate_pseudo_absence <- function(data, x_col, y_col, n, min_dist = NULL) {
   pseudo_abs$presence <- 0
 
   # Presence data
-  presence_data <- data
+  presence_data <- data[, c(x_col, y_col)]
   presence_data$presence <- 1
 
   result <- rbind(presence_data, pseudo_abs)
 
   return(result)
 }
-
-################################################
-### BEISPIEL SPÄTER LÖSCHEN
-###############################
-
-# # Beispiel Presence-Daten
-# data <- data.frame(
-#   lon = c(10, 11, 12),
-#   lat = c(50, 51, 52)
-# )
-
-# # Funktion testen (mit Mindestabstand)
-# result <- generate_pseudo_absence(
-#   data,
-#   x_col = "lon",
-#   y_col = "lat",
-#   n = 5,
-#   min_dist = 0.5
-# )
-
-# print(result)

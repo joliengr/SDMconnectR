@@ -6,7 +6,7 @@
 #' @param data Data frame used for evaluation (with response and predictors)
 #' @param response Name of the response column in data
 #' @param threshold Optional numeric threshold to convert probabilities to presence/absence (default = 0.5)
-#' @return A list with AUC and, if threshold is provided, confusion matrix
+#' @return A list with AUC a nd, if threshold is provided, confusion matrix
 #' @examples
 #' library(pROC)
 #' set.seed(123)
@@ -48,24 +48,3 @@ evaluate_sdm <- function(model, data, response, threshold = 0.5) {
   return(result)
 }
 
-
-# ##############################
-# ##BEISPIEL
-# #########################
-
-# library(pROC)
-
-# # Beispiel-Daten
-# set.seed(123)
-# data <- data.frame(
-#   x1 = runif(50),
-#   x2 = runif(50),
-#   presence = sample(0:1, 50, replace = TRUE)
-# )
-
-# # Fit SDM
-# model <- fit_sdm_glm(data, response = "presence", predictors = c("x1", "x2"))
-
-# # Evaluate
-# eval <- evaluate_sdm(model, data, response = "presence", threshold = 0.5)
-# eval

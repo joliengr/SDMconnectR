@@ -42,24 +42,3 @@ suitability_to_resistance <- function(raster, method = "inverse", epsilon = 1e-6
   return(resistance)
 }
 
-
-############################
-###BEISPIEL
-#####################
-
-
-# library(terra)
-
-# # Beispiel: Suitability Raster (0–1)
-# r <- rast(nrows=20, ncols=20)
-# values(r) <- runif(ncell(r))  # Werte zwischen 0 und 1
-
-# # Umwandlung
-# res1 <- suitability_to_resistance(r, method = "inverse")
-# res2 <- suitability_to_resistance(r, method = "complement")
-
-# # Plot
-# par(mfrow = c(1, 3))
-# plot(r, main = "Suitability")
-# plot(res1, main = "Resistance (inverse)")
-# plot(res2, main = "Resistance (complement)")
