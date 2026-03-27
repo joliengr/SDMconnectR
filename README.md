@@ -249,6 +249,7 @@ The package is intended for educational and demonstration purposes.
 
 ### Literature 
 GBIF Occurrence Download  https://doi.org/10.15468/dl.v2akjh 
+
 Zarate, M., Shanee, S., Charpentier, E., Sarmiento, Y., Schmitt, C. (2023), Expanded distribution and predicted suitable habitat for the critically endangered yellow-tailed woolly monkey (Lagothrix flavicauda) in Perú. American Journal of Primatology. https://doi.org/10.1002/ajp.23464
 
 ### License
