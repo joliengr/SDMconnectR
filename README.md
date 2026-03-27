@@ -35,12 +35,13 @@ All functions are documented and include example code for testing.
 
 # Example Usage
 
-This package does not include original datasets. All analyses are based on data from published sources cited in the documentation.
+This package does not include original datasets. All analyses are based on data from published sources cited in the documentation. Users are responsible for obtaining these datasets independently.
 
-The data used in this example is occurence data of Lagothrix flavicauda from GBIF.org (25 March 2026) and Zarate et al. (2023)
-The occurence data was preprocessed, thinned to 5km distance and the environmental input data is a stack of the bioclim variables 1,2 and 19, a 30m DEM and the ESA CCI land cover dataset, resampled to 5km resolution. 
+The example is based on occurrence data of Lagothrix flavicauda obtained from GBIF.org (accessed on 25 March 2026) and Zárate et al. (2023). The occurrence data were preprocessed and spatially thinned to a minimum distance of 5 km.
 
-Despise certain preprocessing and evaluating the model, which has a mean_AUC = 0.8655556, the analysis has to be considered preliminar an is simply to demonstrate the use of the functions. The quality of the outcome depends highly on the quality of the input data.
+Environmental predictors include a stack of bioclimatic variables (BIO1, BIO2, BIO19), a 30 m digital elevation model (DEM), and the ESA CCI land cover dataset. All layers were resampled to a spatial resolution of 5 km.
+
+Despite basic preprocessing and model evaluation (mean AUC = 0.866), this analysis should be considered preliminary and is intended solely to demonstrate the functionality of the package. Model performance and results strongly depend on the quality and suitability of the input data.
 
 ```r
 abs <- generate_pseudo_absence(
